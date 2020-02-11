@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KhoslaLabsAssignment</string>
+
+    <string name="error_msg">Something went wrong at our end!</string>
+
+    <string name="retry">Retry</string>
+</resources>
