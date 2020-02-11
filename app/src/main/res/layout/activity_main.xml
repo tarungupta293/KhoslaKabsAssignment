@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_bg"
+    android:background="@drawable/background"
     tools:context=".ui.activities.MainActivity">
 
     <ProgressBar
@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@drawable/banner"
         android:visibility="gone">
 
         <RelativeLayout
@@ -37,7 +38,7 @@
                 tools:text="20&#xb0;"
                 android:textSize="96sp"
                 android:fontFamily="@font/roboto_black"
-                android:textColor="@color/color_temp"/>
+                android:textColor="@color/color_white"/>
 
             <TextView
                 android:id="@+id/txt_city"
@@ -49,7 +50,7 @@
                 tools:text="20"
                 android:textSize="36sp"
                 android:fontFamily="@font/roboto_thin"
-                android:textColor="@color/color_city"/>
+                android:textColor="@color/color_white"/>
         </RelativeLayout>
 
 
@@ -66,13 +67,19 @@
         android:id="@+id/layout_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_error_screen_bg">
+        android:background="@drawable/background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/error"/>
             <TextView
                 android:id="@+id/txtError"
                 android:layout_width="wrap_content"
@@ -80,6 +87,7 @@
                 android:text="@string/error_msg"
                 android:textColor="@color/color_white"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_thin"
                 android:textSize="54sp"/>
             <Button
