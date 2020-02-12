@@ -53,13 +53,9 @@ public class MainActivity extends AppCompatActivity {
         appPref = new AppPref(this);
         initialiseViews();
 
-        getData();
-    }
-
-    private void getData() {
         projectViewModel = ViewModelProviders.of(this).get(ProjectViewModel.class);
-
         observeViewModel(projectViewModel);
+
     }
 
     private void observeViewModel(ProjectViewModel viewModel) {
@@ -122,11 +118,9 @@ public class MainActivity extends AppCompatActivity {
         btnRetry = findViewById(R.id.btnRetry);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false));
 
-        btnRetry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getData();
-            }
+        btnRetry.setOnClickListener(view -> {
+            projectViewModel.getWeatherData();
+            observeViewModel(projectViewModel);
         });
 
         recyclerAdapter = new RecyclerAdapter(this,dataList);

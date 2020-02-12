@@ -18,6 +18,10 @@ public class ProjectViewModel extends AndroidViewModel {
     public ProjectViewModel(Application application) {
         super(application);
 
+        getWeatherData();
+    }
+
+    public void getWeatherData() {
         projectListObservable = ApiRepository.getInstance().getProjectList();
     }
 
