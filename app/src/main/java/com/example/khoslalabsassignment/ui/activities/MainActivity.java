@@ -1,6 +1,5 @@
 package com.example.khoslalabsassignment.ui.activities;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,11 +25,8 @@ import com.example.khoslalabsassignment.beans.WeatherApiiResponse;
 import com.example.khoslalabsassignment.beans.WeatherList;
 import com.example.khoslalabsassignment.ui.adapters.RecyclerAdapter;
 import com.example.khoslalabsassignment.viewmodel.ProjectViewModel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,12 +50,16 @@ public class MainActivity extends AppCompatActivity {
         appPref = new AppPref(this);
         initialiseViews();
 
-        projectViewModel = ViewModelProviders.of(this).get(ProjectViewModel.class);
-
-        observeViewModel(projectViewModel,true,false);
+        getData();
     }
 
-    private void observeViewModel(ProjectViewModel viewModel, final boolean isFirstTime, final boolean isLastPositionVisible) {
+    private void getData() {
+        projectViewModel = ViewModelProviders.of(this).get(ProjectViewModel.class);
+
+        observeViewModel(projectViewModel);
+    }
+
+    private void observeViewModel(ProjectViewModel viewModel) {
         // Update the list when the data changes
         changeLayoutVisibility(View.VISIBLE,View.GONE,View.GONE);
 
@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         btnRetry = findViewById(R.id.btnRetry);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false));
 
-        /*btnRetry.setOnClickListener(new View.OnClickListener() {
+        btnRetry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getData();
             }
-        });*/
+        });
 
         recyclerAdapter = new RecyclerAdapter(this,dataList);
         recyclerView.setAdapter(recyclerAdapter);
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDataInUI(WeatherList weatherList,String cityName) {
         if (weatherList!=null && weatherList.getMain()!=null){
-            txtTemperature.setText(AppUtils.convertFahrenheitToCelcius(weatherList.getMain().getTemp())+AppConstants.DEGREE_SYMBOL_UNICODE);
+            txtTemperature.setText(AppUtils.convertKelvinToCelcius(weatherList.getMain().getTemp())+AppConstants.DEGREE_SYMBOL_UNICODE);
         }
         txtCity.setText(cityName);
     }

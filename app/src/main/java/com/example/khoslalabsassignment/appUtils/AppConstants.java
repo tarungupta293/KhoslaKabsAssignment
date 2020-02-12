@@ -6,6 +6,8 @@ public class AppConstants {
     public static final String DATE_FORMAT_WEATHER_API = "yyyy-MM-dd hh:mm:ss";
     public static final String DATE_FORMAT_SHOW_DATE_ONLY = "yyyy-MM-dd";
     public static final String DATE_FORMAT_DAY_OF_WEEK = "EE";
+    public static final String DATE_FORMAT_RECYCLER_VIEW = "dd MMM yyyy";
+
 
     public static final String DEGREE_SYMBOL_UNICODE = "\u00B0";
 

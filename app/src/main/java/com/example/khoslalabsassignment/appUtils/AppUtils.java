@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class AppUtils {
 
-    private static Date convertStringToDate(String dateInStr,String dateFormat){
+    public static Date convertStringToDate(String dateInStr,String dateFormat){
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         try {
             Date date = format.parse(dateInStr);
@@ -40,8 +40,8 @@ public class AppUtils {
         }
         return null;
     }
-    public static String convertFahrenheitToCelcius(double tempInFahrenheit){
-        return String.valueOf((int)(((tempInFahrenheit - 32) * 5) / 9));
+    public static String convertKelvinToCelcius(double tempInKelvin){
+        return String.valueOf((int)(tempInKelvin - 273.15));
     }
 
     public static String getDayOfWeekFromDate(String dateInStr,String dateFormat){
@@ -75,5 +75,15 @@ public class AppUtils {
                 break;
         }
         return dayOfWeekToReturn;
+    }
+
+    public static long getDaysFromDate(Date currentDate, Date selectedDate){
+
+        long different = selectedDate.getTime() - currentDate.getTime();
+        long daysInMilli = 1000 * 60 * 60 * 24;
+        if (different<0)
+            return 0;
+        else
+            return different / daysInMilli;
     }
 }
