@@ -1,6 +1,7 @@
 package com.example.khoslalabsassignment.ui.activities;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -25,6 +26,8 @@ import com.example.khoslalabsassignment.beans.WeatherApiiResponse;
 import com.example.khoslalabsassignment.beans.WeatherList;
 import com.example.khoslalabsassignment.ui.adapters.RecyclerAdapter;
 import com.example.khoslalabsassignment.viewmodel.ProjectViewModel;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -77,13 +80,12 @@ public class MainActivity extends AppCompatActivity {
                         if (i == 0) {
 //                            selectedWeatherList.add(weatherApiiResponse.getList().get(i));
                             showDataInUI(weatherApiiResponse.getList().get(i), weatherApiiResponse.getCity().getName());
-                            dateAddedInList = AppUtils.convertDateFormat(weatherApiiResponse.getList().get(i).getDtTxt(), AppConstants.DATE_FORMAT_WEATHER_API, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY);
-                        } else {
-                            String convertedDateFormatStr = AppUtils.convertDateFormat(weatherApiiResponse.getList().get(i).getDtTxt(), AppConstants.DATE_FORMAT_WEATHER_API, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY);
-                            if (!AppUtils.checkWhetherTwoDatesMatched(convertedDateFormatStr, dateAddedInList, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY)) {
-                                dataList.add(weatherApiiResponse.getList().get(i));
-                                dateAddedInList = convertedDateFormatStr;
-                            }
+//                            dateAddedInList = AppUtils.convertDateFormat(weatherApiiResponse.getList().get(i).getDtTxt(), AppConstants.DATE_FORMAT_WEATHER_API, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY);
+                        }
+                        String convertedDateFormatStr = AppUtils.convertDateFormat(weatherApiiResponse.getList().get(i).getDtTxt(), AppConstants.DATE_FORMAT_WEATHER_API, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY);
+                        if (TextUtils.isEmpty(dateAddedInList) || !AppUtils.checkWhetherTwoDatesMatched(convertedDateFormatStr, dateAddedInList, AppConstants.DATE_FORMAT_SHOW_DATE_ONLY)) {
+                            dataList.add(weatherApiiResponse.getList().get(i));
+                            dateAddedInList = convertedDateFormatStr;
                         }
                     }
                     if (!dataList.isEmpty()){
